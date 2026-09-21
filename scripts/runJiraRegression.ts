@@ -63,16 +63,15 @@ async function runRegression() {
     // -------------------------------------------------
  
     const execution = spawnSync(
-      'cmd.exe',
+      process.execPath,
       [
-        '/d',
-        '/s',
-        '/c',
-        `npx playwright test --grep "${grepPattern}" --reporter=list,./reporters/jiraResultReporter.ts`,
+        require.resolve('@playwright/test/cli'),
+        'test',
+        '--grep',
+        grepPattern,
+        '--reporter=list,./reporters/jiraResultReporter.ts',
       ],
-      {
-        stdio: 'inherit',
-      }
+      { stdio: 'inherit' }
     );
  
     if (execution.error) {
