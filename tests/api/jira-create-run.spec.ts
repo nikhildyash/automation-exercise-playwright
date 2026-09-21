@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { createRegressionRun } from '../../api/jiraClient';
+import { createRegressionRun, isJiraConfigured } from '../../api/jiraClient';
+
+test.skip(!isJiraConfigured(), 'Jira secrets are not configured');
  
 test('create regression run in Jira', async () => {
  

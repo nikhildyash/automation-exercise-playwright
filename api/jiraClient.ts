@@ -1,19 +1,33 @@
 import 'dotenv/config';
- 
-const cloudId = process.env.JIRA_CLOUD_ID;
-const token = process.env.JIRA_API_TOKEN;
- 
-if (!cloudId) {
-  throw new Error('JIRA_CLOUD_ID is missing from .env');
+
+export function isJiraConfigured(): boolean {
+  return Boolean(
+    process.env.JIRA_CLOUD_ID &&
+    process.env.JIRA_API_TOKEN &&
+    process.env.JIRA_PROJECT_KEY
+  );
 }
- 
-if (!token) {
-  throw new Error('JIRA_API_TOKEN is missing from .env');
+
+function getJiraConfig(): { jiraBaseUrl: string; token: string } {
+  const cloudId = process.env.JIRA_CLOUD_ID;
+  const token = process.env.JIRA_API_TOKEN;
+
+  if (!cloudId) {
+    throw new Error('JIRA_CLOUD_ID is missing from environment variables');
+  }
+
+  if (!token) {
+    throw new Error('JIRA_API_TOKEN is missing from environment variables');
+  }
+
+  return {
+    jiraBaseUrl: `https://api.atlassian.com/ex/jira/${cloudId}`,
+    token
+  };
 }
- 
-const jiraBaseUrl = `https://api.atlassian.com/ex/jira/${cloudId}`;
  
 export async function getJiraIssue(issueKey: string) {
+  const { jiraBaseUrl, token } = getJiraConfig();
   const response = await fetch(
     `${jiraBaseUrl}/rest/api/3/issue/${issueKey}`,
     {
@@ -37,6 +51,7 @@ export async function getJiraIssue(issueKey: string) {
 }
 
 export async function getRegressionTestCases() {
+  const { jiraBaseUrl, token } = getJiraConfig();
   const jql =
     'project = SCRUM AND issuetype = "Test Case" AND labels = Regression AND labels = automated';
  
@@ -65,6 +80,7 @@ export async function getRegressionTestCases() {
 }
 
 export async function createRegressionRun() {
+  const { jiraBaseUrl, token } = getJiraConfig();
   const projectKey = process.env.JIRA_PROJECT_KEY;
  
   if (!projectKey) {
@@ -138,6 +154,7 @@ export async function addCommentToJiraIssue(
   issueKey: string,
   comment: string
 ) {
+  const { jiraBaseUrl, token } = getJiraConfig();
   const response = await fetch(
     `${jiraBaseUrl}/rest/api/3/issue/${issueKey}/comment`,
     {

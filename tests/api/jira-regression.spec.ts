@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { getRegressionTestCases } from '../../api/jiraClient';
+import { getRegressionTestCases, isJiraConfigured } from '../../api/jiraClient';
+
+test.skip(!isJiraConfigured(), 'Jira secrets are not configured');
  
 test('fetch regression test cases from Jira', async () => {
   const result = await getRegressionTestCases();
