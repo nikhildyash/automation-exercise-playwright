@@ -2,7 +2,7 @@ import { expect, test } from '../../fixtures/testFixtures';
 import { createUniqueUser } from '../../utils/testData';
 
 test.describe('Hybrid | API setup and UI validation', () => {
-  test('creates a user by API and logs in through the UI', async ({ accountApi, loginPage }) => {
+  test('SCRUM-13 | Create an account through API and log in through the UI', async ({ accountApi, loginPage }) => {
     const user = createUniqueUser();
     let accountCreated = false;
 

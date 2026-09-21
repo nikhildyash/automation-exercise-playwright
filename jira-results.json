@@ -1,0 +1,45 @@
+{
+  "runStatus": "failed",
+  "tests": [
+    {
+      "jiraKey": "SCRUM-8",
+      "title": "SCRUM-8 | Retrieve the product catalog",
+      "status": "passed"
+    },
+    {
+      "jiraKey": "SCRUM-9",
+      "title": "SCRUM-9 | Search products by name",
+      "status": "passed"
+    },
+    {
+      "jiraKey": "SCRUM-11",
+      "title": "SCRUM-11 | Validate the complete account lifecycle",
+      "status": "passed"
+    },
+    {
+      "jiraKey": "SCRUM-12",
+      "title": "SCRUM-12 | Reject an invalid product-search response schema",
+      "status": "passed"
+    },
+    {
+      "jiraKey": "SCRUM-6",
+      "title": "SCRUM-6 | Search for a product in the catalog",
+      "status": "passed"
+    },
+    {
+      "jiraKey": "SCRUM-7",
+      "title": "SCRUM-7 | Add a product to the shopping cart",
+      "status": "passed"
+    },
+    {
+      "jiraKey": "SCRUM-13",
+      "title": "SCRUM-13 | Create an account through API and log in through the UI",
+      "status": "passed"
+    },
+    {
+      "jiraKey": "SCRUM-10",
+      "title": "SCRUM-10 | Reject an unsupported HTTP method for the product list",
+      "status": "failed"
+    }
+  ]
+}

@@ -2,7 +2,7 @@ import productData from '../../test-data/products.json';
 import { expect, test } from '../../fixtures/testFixtures';
 
 test.describe('API | Products', () => {
-  test('gets the product catalog', async ({ productsApi }) => {
+  test('SCRUM-8 | Retrieve the product catalog', async ({ productsApi }) => {
     const result = await productsApi.getAllProducts();
 
     expect(result.responseCode).toBe(200);
@@ -11,7 +11,7 @@ test.describe('API | Products', () => {
     ]));
   });
 
-  test('searches products', async ({ productsApi }) => {
+  test('SCRUM-9 | Search products by name', async ({ productsApi }) => {
     const result = await productsApi.searchProduct(productData.searchTerm);
 
     expect(result.responseCode).toBe(200);
@@ -21,7 +21,7 @@ test.describe('API | Products', () => {
     )).toBeTruthy();
   });
 
-  test('rejects an unsupported method', async ({ productsApi }) => {
+  test('SCRUM-10 | Reject an unsupported HTTP method for the product list', async ({ productsApi }) => {
     const result = await productsApi.postToProductsList();
 
     expect(result.responseCode).toBe(405);

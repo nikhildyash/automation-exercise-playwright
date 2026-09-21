@@ -2,7 +2,7 @@ import { expect, test } from '../../fixtures/testFixtures';
 import { createUniqueUser } from '../../utils/testData';
 
 test.describe('API | Account lifecycle', () => {
-  test('creates, verifies, updates and deletes an account', async ({ accountApi }) => {
+  test('SCRUM-11 | Validate the complete account lifecycle', async ({ accountApi }) => {
     const user = createUniqueUser();
     let accountCreated = false;
 
