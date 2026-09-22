@@ -172,6 +172,8 @@ Regression Run: ${regressionRun.key}
  
 Result: ${testResult.status.toUpperCase()}
  
+Executed At (IST): ${testResult.executedAt}
+
 Test:
 ${testResult.title}
 `;
